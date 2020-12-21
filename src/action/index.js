@@ -1,8 +1,21 @@
-export const INCREASE="INCREASE";
-export const DECREASE="DECREASE"
-export const GET_AMOUNTS="GET_AMOUNTS"
-export const CLEAR_CART="CLEAR_CART"
-export const GET_TOTALS="GET_TOTALS"
-export const REMOVE="REMOVE"
+import {FETCH_PRODUCT,ADD_TO_CART}from './type'
+import product from '.././api'
+import history from '../history'
+
+
+export const fetchProduct = () => async (dispatch) => {
+    const response = await product.get('/products');
+    dispatch({
+        type: FETCH_PRODUCT,
+        payload: response.data,
+    })
+}
+
+export const handleCartItem = (id) => async (dispatch) => {
+    dispatch({
+        type: ADD_TO_CART,
+        payload: id,
+    })
+}
 
 

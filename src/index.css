@@ -263,3 +263,13 @@ Cart Item
   font-size: 1.25rem;
   line-height: 1;
 }
+
+
+.ui.card {
+  width: fit-content !important;
+}
+
+.ui.card>.image:not(.ui)>img, .ui.cards>.card>.image:not(.ui)>img {
+  /* border: none; */
+  height: 350px !important;
+}

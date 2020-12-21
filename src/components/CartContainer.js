@@ -1,7 +1,7 @@
 import React from "react";
 import CartItem from "./CartItem";
 import {connect} from "react-redux"
-import {CLEAR_CART,GET_TOTALS} from '../action'
+import {CLEAR_CART,GET_TOTALS} from '../action/type'
 
 const CartContainer = ({ cart = [],total,dispatch }) => {
 

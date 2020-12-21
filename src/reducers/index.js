@@ -1,16 +1,35 @@
-import { INCREASE, DECREASE, CLEAR_CART, REMOVE, GET_TOTALS, GET_AMOUNTS } from "../action"
+import { INCREASE, DECREASE, CLEAR_CART, REMOVE, GET_TOTALS,FETCH_PRODUCT,ADD_TO_CART } from "../action/type"
 // items
 import cartItems from "../cart-items";
 
-const initialStore ={
+// const initialStore ={
+//     total:0,
+//     amount:0,
+//     cart:cartItems,
+//     products:[],
+//   }
+
+  const initialStore ={
     total:0,
     amount:0,
-    cart:cartItems,
+    cart:[],
+    products:[],
   }
 
 function reducer(state=initialStore, action) {
 
     switch (action.type) {
+
+        case FETCH_PRODUCT:
+        
+           return {...state,products:action.payload}
+
+        case ADD_TO_CART:
+            
+             const cartItem=state.products.filter(value => value.id==action.payload)
+             const newCartItem=state.cart.concat(cartItem);
+           return {...state, cart:newCartItem,amount:newCartItem.length}
+
         case DECREASE:
 
             let tempCartDec = [];
