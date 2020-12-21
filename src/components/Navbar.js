@@ -3,7 +3,7 @@ import{ connect} from "react-redux"
 import {Link} from 'react-router-dom'
 
 const Navbar = ({amount}) => {
-  // const count={cart};
+  
   
   return (
     <nav>
@@ -28,7 +28,7 @@ const Navbar = ({amount}) => {
 
 
 const mapStateToProps = (state)=>{
-  return {amount:state.amount};
+  return {amount:state.cart.length};
 }
 
 export default connect(mapStateToProps) (Navbar);

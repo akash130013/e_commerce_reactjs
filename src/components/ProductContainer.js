@@ -7,7 +7,6 @@ import ProductItem from './ProductItem'
 
 class ProductContainer extends Component {
 
-   
 
     componentDidMount() {
         this.props.fetchProduct();
