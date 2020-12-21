@@ -1,4 +1,4 @@
-import {FETCH_PRODUCT,ADD_TO_CART}from './type'
+import {FETCH_PRODUCT,ADD_TO_CART,REMOVE}from './type'
 import product from '.././api'
 import history from '../history'
 
@@ -18,4 +18,10 @@ export const handleCartItem = (id) => async (dispatch) => {
     })
 }
 
+export const removeFromCart = (id) => async (dispatch) => {
+    dispatch({
+        type: REMOVE,
+        payload: {id},
+    })
+}
 

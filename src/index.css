@@ -273,3 +273,7 @@ Cart Item
   /* border: none; */
   height: 350px !important;
 }
+
+.ui.card>.extra {
+margin:auto !important;
+}

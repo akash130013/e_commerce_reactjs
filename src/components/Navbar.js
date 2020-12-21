@@ -9,7 +9,7 @@ const Navbar = ({amount}) => {
     <nav>
       <div className="nav-center">
         <Link to="/">
-        <h3>GoBony Pvt Ltd</h3>
+        <h3>My Task</h3>
         </Link>
         <div className="nav-container">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

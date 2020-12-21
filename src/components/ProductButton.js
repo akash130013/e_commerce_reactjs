@@ -1,14 +1,21 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 import { connect } from "react-redux"
-import {handleCartItem} from '../action'
+import {handleCartItem,removeFromCart} from '../action'
 
-function ProductButton({price,id,handleCartItem}) {
-
-
-  const handleCart = (id)=>{
-    // console.log(id);
+function ProductButton({price,id,handleCartItem,cart,removeFromCart}) {
+  
+  const addToCart = (id)=>{
        handleCartItem(id);
+  }
+
+  const checkItemInCart=(id)=>{
+    let isExist= cart.filter(item => item.id === id);
+     return isExist.length>0 ? true : false;
+  }
+
+  const removeCartItem=(id)=>{
+    removeFromCart(id);
   }
 
   return (
@@ -21,12 +28,21 @@ function ProductButton({price,id,handleCartItem}) {
       </Button.Content>
     </Button>
    
-   <Button animated='fade' primary onClick={()=>handleCart(id)}>
-      <Button.Content visible>Add To Cart</Button.Content>
+   {checkItemInCart(id) ? 
+   <Button animated='fade'  color='red' onClick={()=>removeCartItem(id)}>
+      <Button.Content visible>Remove Item</Button.Content>
       <Button.Content hidden>
-        <Icon name='shop' />
+        <Icon name='close' />
       </Button.Content>
     </Button>
+    :
+    <Button animated='fade' primary onClick={()=>addToCart(id)}>
+      <Button.Content visible>Add To Cart</Button.Content>
+      <Button.Content hidden>
+        <Icon name='plus square' />
+      </Button.Content>
+    </Button>
+}
 
   </>
   )
@@ -34,9 +50,11 @@ function ProductButton({price,id,handleCartItem}) {
 
 
 const mapStateToProps = (state)=>{
+  const {cart}=state;
+ 
   return {
-    state,
+    cart,
   }
 }
 
-export default connect(mapStateToProps,{handleCartItem})(ProductButton)
+export default connect(mapStateToProps,{handleCartItem,removeFromCart})(ProductButton)
