@@ -1,14 +1,28 @@
 import React from "react";
 import{ connect} from "react-redux"
 import {Link} from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
+import firebase from 'firebase/app'
+import history from '../history'
 
 const Navbar = ({amount}) => {
   
+  const userSignOut=()=>{
+    firebase.auth().signOut().then(function() {
+      localStorage.removeItem('accessToken');
+      localStorage.clear();
+     history.push('/login');
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
+
+ 
   
   return (
     <nav>
       <div className="nav-center">
-        <Link to="/">
+        <Link to="/products">
         <h3>My Task</h3>
         </Link>
         <div className="nav-container">
@@ -20,7 +34,9 @@ const Navbar = ({amount}) => {
                 <p className="total-amount">{amount}</p>
           </div>
           </Link>
+         
         </div>
+        <Button onClick={userSignOut}  content='Logout' />
       </div>
     </nav>
   );
